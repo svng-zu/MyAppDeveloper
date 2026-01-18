@@ -1,224 +1,288 @@
 # UI/UX 디자인 가이드
 
-알겠습니다. 앱 아이디어를 기반으로 조금 더 구체적인 PRD를 가정하고, 사용자 인터페이스를 개선하여 실제 앱 디자인에 더 가깝도록 인터랙티브 HTML 프로토타입을 생성하겠습니다.
-
-**가정 PRD:**
-
-1.  **앱의 기본 아이디어나 컨셉:** 건강한 식습관 형성을 돕는 앱. 영양 정보 기록, 맞춤형 식단 추천, 진행 상황 시각화 기능을 제공.
-2.  **해결하고자 하는 문제나 니즈:** 바쁜 현대인들이 건강한 식습관을 유지하기 어려움. 영양 불균형, 식단 관리의 어려움을 해결.
-3.  **대략적인 타겟 사용자층:** 20-40대 직장인, 건강에 관심 있는 사용자, 식단 관리가 필요한 사용자.
-4.  **참고하고 있는 유사 서비스:** MyFitnessPal, Noom
-
-**출력 형식:**
-
-1.  **컬러 팔레트 (마크다운)**
-
-```
 ## 컬러 팔레트
-- Primary: #3B82F6  /* Blue-500 */
-- Secondary: #6EE7B7 /* Green-300 */
-- Accent: #FCD34D    /* Yellow-300 */
-- Background: #111827 /* Gray-900 */
-- Text: #E5E7EB      /* Gray-200 */
-```
+- Primary: #6366F1 (생생한 파랑/보라)
+- Secondary: #10B981 (밝은 녹색)
+- Accent: #F59E0B (따뜻한 주황)
+- Background: #0F172A (깊은 네이비)
+- Surface: #1E293B (어두운 회색)
+- Text: #F8FAFC (밝은 흰색)
 
-2.  **주요 화면 (마크다운)**
-
-```
 ## 주요 화면
-1. 메인 화면 (오늘의 식단 기록)
-2. 기록 화면 (식단 기록 추이)
-3. 추천 화면 (맞춤형 식단 추천)
-4. 프로필 화면 (사용자 정보 및 설정)
-```
-
-3.  **HTML 프로토타입 (완전한 HTML 문서)**
+1. 로그인 화면
+2. 메인 대시보드
 
 ```html
 <!-- INTERACTIVE PROTOTYPE START -->
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>식단 관리 앱 프로토타입</title>
-    <style>
-        body {
-            background: #111827;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #E5E7EB;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+<meta charset="utf-8">
+<title>운동 습관 형성 앱 프로토타입</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .phone-mockup {
-            width: 375px; /* iPhone SE width */
-            height: 667px; /* iPhone SE height */
-            background: #1F2937;
-            border-radius: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
+body {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding: 40px 20px;
+    min-height: 100vh;
+    color: #F8FAFC;
+}
 
-        .screen {
-            padding: 20px;
-            height: 587px; /* Adjusted for header */
-            overflow-y: auto;
-        }
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
-        /* Header */
-        .header {
-            background-color: #3B82F6;
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-            font-size: 1.2em;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+.screen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
 
-        /* Navigation */
-        .navigation {
-            background-color: #1F2937;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
+.phone-mockup {
+    background: linear-gradient(135deg, #1E293B, #334155);
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
 
-        .nav-item {
-            color: #9CA3AF;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
+.phone-mockup::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s;
+}
 
-        .nav-item:hover, .nav-item.active {
-            background-color: #374151;
-            color: #E5E7EB;
-        }
+.phone-mockup:hover::before {
+    left: 100%;
+}
 
-        /* UI Elements */
-        .card {
-            background-color: #374151;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
+.phone-mockup:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 80px rgba(99, 102, 241, 0.4);
+}
 
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4B5563;
-            color: #E5E7EB;
-        }
+.screen {
+    background: linear-gradient(135deg, #0F172A, #1a2332);
+    border-radius: 30px;
+    padding: 30px;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
 
-        button {
-            background-color: #3B82F6;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.screen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6366F1, #8B5CF6, #EC4899);
+}
 
-        button:hover {
-            background-color: #2563EB;
-        }
-    </style>
+.screen-title {
+    color: #F8FAFC;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.phone-mockup {
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.phone-mockup:nth-child(1) { animation-delay: 0.1s; }
+.phone-mockup:nth-child(2) { animation-delay: 0.2s; }
+
+/* 로그인 화면 스타일 */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-form input {
+    background: rgba(30, 41, 59, 0.6);
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 16px;
+    color: #F8FAFC;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.login-form input:focus {
+    box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* 메인 대시보드 스타일 */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #94A3B8;
+}
+</style>
 </head>
 <body>
-
-<div class="phone-mockup">
-    <div class="header">식단 관리</div>
-
-    <div class="screen" id="main-screen">
-        <h2>오늘의 식단</h2>
-        <div class="card">
-            <input type="text" class="input-field" placeholder="음식 이름">
-            <input type="number" class="input-field" placeholder="칼로리">
-            <button onclick="alert('기록 완료!')">기록하기</button>
+<div class="container">
+    <div class="screen-grid">
+        <!-- 로그인 화면 -->
+        <div class="phone-mockup">
+            <div class="screen">
+                <h2 class="screen-title">로그인</h2>
+                <form class="login-form">
+                    <input type="email" placeholder="이메일">
+                    <input type="password" placeholder="비밀번호">
+                    <button class="btn-primary">로그인</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div class="screen" id="record-screen" style="display:none;">
-        <h2>식단 기록</h2>
-        <div class="card">
-            <p>최근 7일 칼로리 추이 그래프 (미구현)</p>
+        <!-- 메인 대시보드 -->
+        <div class="phone-mockup">
+            <div class="screen">
+                <h2 class="screen-title">오늘의 운동</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-box">
+                        <div class="stat-value">30</div>
+                        <div class="stat-label">분 운동</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">150</div>
+                        <div class="stat-label">칼로리 소모</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">일 연속</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <p style="color: #94A3B8;">오늘의 운동 루틴을 확인하세요!</p>
+                </div>
+                <button class="btn-primary">운동 시작하기</button>
+            </div>
         </div>
-    </div>
-
-    <div class="screen" id="recommend-screen" style="display:none;">
-        <h2>추천 식단</h2>
-        <div class="card">
-            <p>오늘의 추천 식단: 닭가슴살 샐러드</p>
-        </div>
-    </div>
-
-    <div class="screen" id="profile-screen" style="display:none;">
-        <h2>프로필</h2>
-        <div class="card">
-            <p>사용자 이름: 홍길동</p>
-            <p>목표 칼로리: 2000kcal</p>
-        </div>
-    </div>
-
-    <div class="navigation">
-        <a href="#" class="nav-item active" onclick="showScreen('main-screen'); return false;">홈</a>
-        <a href="#" class="nav-item" onclick="showScreen('record-screen'); return false;">기록</a>
-        <a href="#" class="nav-item" onclick="showScreen('recommend-screen'); return false;">추천</a>
-        <a href="#" class="nav-item" onclick="showScreen('profile-screen'); return false;">프로필</a>
     </div>
 </div>
 
 <script>
-    function showScreen(screenId) {
-        // Hide all screens
-        document.querySelectorAll('.screen').forEach(screen => {
-            screen.style.display = 'none';
-        });
+// 인터랙티브 기능
+document.querySelectorAll('.phone-mockup').forEach((phone, index) => {
+    phone.addEventListener('click', function() {
+        this.style.transform = this.style.transform.includes('scale(1.05)')
+            ? 'translateY(-10px) scale(1.02)'
+            : 'translateY(-10px) scale(1.05)';
+    });
+});
 
-        // Show the selected screen
-        document.getElementById(screenId).style.display = 'block';
-
-        // Update active navigation item
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === '#' && item.getAttribute('onclick').includes(screenId)) {
-                item.classList.add('active');
-            }
-        });
-    }
+document.querySelectorAll('.btn-primary').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.textContent = '✓ 완료';
+        setTimeout(() => {
+            this.textContent = '운동 시작하기';
+        }, 1500);
+    });
+});
 </script>
-
 </body>
 </html>
 <!-- INTERACTIVE PROTOTYPE END -->
 ```
-
-**설명:**
-
-*   **컬러 팔레트:** Tailwind CSS에서 영감을 받아 현대적이고 접근성이 좋은 색상 조합을 선택했습니다.
-*   **HTML 구조:**
-    *   `phone-mockup` 클래스를 사용하여 휴대폰 모양을 시뮬레이션했습니다.
-    *   각 화면은 `screen` 클래스를 가진 `div`로 구현되었으며, 초기에는 메인 화면만 표시됩니다.
-    *   `navigation` 클래스는 화면 전환을 위한 하단 네비게이션 바입니다.
-*   **CSS 스타일:**
-    *   전체적인 디자인을 현대적이고 깔끔하게 유지했습니다.
-    *   각 요소에 적절한 패딩, 마진, 폰트 크기를 적용하여 가독성을 높였습니다.
-*   **JavaScript:**
-    *   `showScreen()` 함수는 클릭된 네비게이션 아이템에 따라 해당 화면을 표시하고 다른 화면을 숨깁니다.
-    *   네비게이션 아이템의 `active` 클래스를 업데이트하여 현재 활성화된 화면을 시각적으로 나타냅니다.
-*   **UI 요소:**
-    *   각 화면에 간단한 입력 필드와 버튼을 추가하여 사용자 인터랙션을 시뮬레이션했습니다.
-    *   `card` 클래스를 사용하여 각 화면의 콘텐츠를 그룹화하고 시각적으로 분리했습니다.
-
-이 프로토타입은 가상의 식단 관리 앱의 기본적인 기능과 사용자 인터페이스를 보여줍니다. 실제 앱 개발에서는 데이터베이스 연동, API 호출, 더 복잡한 UI 요소 및 로직이 필요합니다.
