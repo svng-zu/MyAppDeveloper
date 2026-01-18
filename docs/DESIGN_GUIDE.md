@@ -1,48 +1,31 @@
 # UI/UX 디자인 가이드
 
-## PRD 기반 러닝 앱 HTML 프로토타입 생성
-
-러닝 앱 기획을 위한 PRD를 바탕으로 HTML 프로토타입을 생성합니다.
-
-**1. 앱의 기본 아이디어나 컨셉:** 운동 습관 형성을 돕는 러닝 앱. 사용자의 수준에 맞는 맞춤형 러닝 플랜을 제공하고, 재미있는 도전 과제와 소셜 기능을 통해 지속적인 동기 부여를 제공합니다.
-
-**2. 해결하고자 하는 문제나 니즈:**
-*   러닝을 시작하기 어렵거나 꾸준히 유지하기 어려운 사람들을 돕습니다.
-*   개인의 운동 능력과 목표에 맞는 맞춤형 러닝 경험을 제공합니다.
-*   러닝을 더욱 재미있고 사회적인 활동으로 만들어줍니다.
-
-**3. 대략적인 타겟 사용자층:**
-*   러닝을 처음 시작하는 초보자
-*   건강 관리를 위해 규칙적인 운동 습관을 만들고 싶은 사람
-*   혼자 운동하는 것에 지루함을 느끼는 사람
-*   러닝을 통해 새로운 사람들과 교류하고 싶은 사람
-
-**4. 참고하고 있는 유사 서비스 (있다면):** Nike Run Club, Strava
-
-이제 위에 정의된 PRD를 바탕으로 러닝 앱의 HTML 프로토타입을 생성합니다.
-
+## 컬러 팔레트
 ```
 ## 컬러 팔레트
-- Primary: #2ecc71 (녹색 - 건강, 활력)
-- Secondary: #3498db (파란색 - 신뢰, 안정)
-- Accent: #f39c12 (주황색 - 에너지, 흥미)
+- Primary: #0D6EFF (나이키 블루)
+- Secondary: #FFFFFF (화이트)
+- Accent: #FF0000 (나이키 레드)
 ```
 
+## 주요 화면
 ```
 ## 주요 화면
-1. 메인 화면 (오늘의 러닝 정보, 추천 플랜)
-2. 러닝 기록 화면 (과거 러닝 데이터 시각화)
-3. 플랜 화면 (맞춤형 러닝 플랜 제공)
-4. 소셜 화면 (친구들과 챌린지, 기록 공유)
+1.  로그인/회원가입 화면
+2.  메인 화면 (배틀 매칭)
+3.  배틀 진행 화면
+4.  결과 화면
 ```
 
+## HTML 프로토타입
 ```html
 <!-- INTERACTIVE PROTOTYPE START -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>러닝 앱 프로토타입</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RunBattle</title>
 <style>
 /* CSS */
 body {
@@ -50,137 +33,214 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-}
-
-header {
-    background-color: #2ecc71;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-}
-
-nav {
-    background-color: #3498db;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    display: inline-block;
+    color: #333;
 }
 
 .container {
-    width: 80%;
+    max-width: 600px;
     margin: 20px auto;
-    background-color: white;
     padding: 20px;
-    border-radius: 5px;
+    background-color: #fff;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.section-title {
-    color: #2ecc71;
-    border-bottom: 2px solid #2ecc71;
-    padding-bottom: 5px;
-    margin-bottom: 20px;
-}
-
-.running-info {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
-
-.running-info div {
+h1 {
     text-align: center;
+    color: #0D6EFF; /* Primary Color */
 }
 
-.plan-card {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-}
-
-.plan-card h3 {
-    color: #3498db;
-}
-
-footer {
-    background-color: #333;
+.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #0D6EFF; /* Primary Color */
     color: white;
     text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
     width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Nike Style Enhancements */
+body {
+    background-color: #000; /* Black Background */
+    color: #fff; /* White Text */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent white */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* Red glow effect */
+}
+
+h1 {
+    color: #FF0000; /* Nike Red */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.button {
+    background-color: #FF0000; /* Nike Red */
+    border: 2px solid #fff; /* White border */
+}
+
+.button:hover {
+    background-color: #b30000;
+}
+
+/* 배틀 화면 스타일 */
+#battleScreen {
+    display: none;
+    text-align: center;
+}
+
+#battleScreen h2 {
+    color: #FF0000;
+    margin-bottom: 20px;
+}
+
+#battleProgress {
+    width: 80%;
+    margin: 20px auto;
+    height: 30px;
+    background-color: #222;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#myProgress, #opponentProgress {
+    height: 100%;
+    background-color: #0D6EFF;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.progressLabel {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8em;
+}
+
+/* 결과 화면 스타일 */
+#resultScreen {
+    display: none;
+    text-align: center;
+}
+
+#resultScreen h2 {
+    color: #FF0000;
+    margin-bottom: 20px;
 }
 </style>
 </head>
 <body>
 
-<header>
-    <h1>러닝 앱</h1>
-</header>
-
-<nav>
-    <a href="#">메인</a>
-    <a href="#">기록</a>
-    <a href="#">플랜</a>
-    <a href="#">소셜</a>
-</nav>
-
-<div class="container">
-    <section>
-        <h2 class="section-title">오늘의 러닝</h2>
-        <div class="running-info">
-            <div>
-                <h3>거리</h3>
-                <p>5 km</p>
-            </div>
-            <div>
-                <h3>시간</h3>
-                <p>30 분</p>
-            </div>
-            <div>
-                <h3>칼로리</h3>
-                <p>300 kcal</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h2 class="section-title">추천 플랜</h2>
-        <div class="plan-card">
-            <h3>초보자를 위한 5K 플랜</h3>
-            <p>8주 동안 5km 완주를 목표로 하는 플랜입니다.</p>
-            <button>시작하기</button>
-        </div>
-        <div class="plan-card">
-            <h3>인터벌 트레이닝 플랜</h3>
-            <p>속도 향상을 위한 인터벌 트레이닝 플랜입니다.</p>
-            <button>시작하기</button>
-        </div>
-    </section>
+<div class="container" id="loginScreen">
+    <h1>RunBattle</h1>
+    <a href="#" class="button" onclick="showMainScreen()">SNS 로그인 (구글)</a>
+    <a href="#" class="button" onclick="showMainScreen()">SNS 로그인 (카카오)</a>
+    <a href="#" class="button" onclick="showMainScreen()">SNS 로그인 (애플)</a>
 </div>
 
-<footer>
-    <p>&copy; 2023 러닝 앱</p>
-</footer>
+<div class="container" id="mainScreen" style="display:none;">
+    <h1>RunBattle</h1>
+    <p>환영합니다, 러너!</p>
+    <button class="button" onclick="findBattle()">배틀 찾기 (1km)</button>
+    <button class="button" onclick="findBattle()">배틀 찾기 (3km)</button>
+    <button class="button" onclick="findBattle()">배틀 찾기 (5km)</button>
+</div>
+
+<div class="container" id="battleScreen" style="display:none;">
+    <h2>실시간 배틀 중!</h2>
+    <p>상대를 기다리는 중...</p>
+
+    <div id="battleProgress">
+        <div id="myProgress"></div>
+    </div>
+    <span class="progressLabel">나의 진행률</span>
+
+    <div id="battleProgress">
+        <div id="opponentProgress"></div>
+    </div>
+    <span class="progressLabel">상대방 진행률</span>
+
+    <button class="button" onclick="endBattle()">포기하기</button>
+</div>
+
+<div class="container" id="resultScreen" style="display:none;">
+    <h2>배틀 결과</h2>
+    <p id="resultMessage"></p>
+    <button class="button" onclick="showMainScreen()">메인 화면으로</button>
+</div>
 
 <script>
 // JavaScript
-// 간단한 예시: 버튼 클릭 시 알림창 표시
-const buttons = document.querySelectorAll('button');
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        alert('플랜을 시작합니다!');
-    });
-});
+function showMainScreen() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('mainScreen').style.display = 'block';
+}
+
+function findBattle() {
+    document.getElementById('mainScreen').style.display = 'none';
+    document.getElementById('battleScreen').style.display = 'block';
+
+    // 임시로 3초 후 배틀 시작
+    setTimeout(startBattle, 3000);
+}
+
+function startBattle() {
+    // 시뮬레이션: 10초 동안 진행률 증가
+    let myProgress = 0;
+    let opponentProgress = 0;
+    const interval = setInterval(() => {
+        myProgress += Math.random() * 10; // 랜덤 진행률
+        opponentProgress += Math.random() * 10;
+
+        myProgress = Math.min(myProgress, 100);
+        opponentProgress = Math.min(opponentProgress, 100);
+
+        document.getElementById('myProgress').style.width = myProgress + '%';
+        document.getElementById('opponentProgress').style.width = opponentProgress + '%';
+
+        if (myProgress >= 100 || opponentProgress >= 100) {
+            clearInterval(interval);
+            endBattle(myProgress >= 100); // 나의 승리 여부
+        }
+    }, 500);
+}
+
+function endBattle(iWon = false) {
+    document.getElementById('battleScreen').style.display = 'none';
+    document.getElementById('resultScreen').style.display = 'block';
+
+    const resultMessage = iWon ? "승리하셨습니다!" : "패배하셨습니다.";
+    document.getElementById('resultMessage').innerText = resultMessage;
+}
 </script>
 
 </body>
