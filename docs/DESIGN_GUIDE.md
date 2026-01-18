@@ -1,292 +1,154 @@
 # UI/UX 디자인 가이드
 
+알겠습니다. 새로운 앱 기획을 기반으로 인터랙티브 HTML 프로토타입을 생성하겠습니다.
+
+**앱 아이디어:** 운동 습관 형성을 돕는 앱
+
+**해결하고자 하는 문제:** 운동을 꾸준히 하기 어렵고, 동기 부여가 부족함
+
+**타겟 사용자층:** 운동 초보자, 운동을 꾸준히 하고 싶지만 의지가 약한 사람
+
+**참고 서비스:** Nike Training Club, 삼성 헬스
+
+**출력 형식:**
+
+1. 컬러 팔레트 (마크다운)
+```
 ## 컬러 팔레트
-- Primary: #FF6B35
-- Secondary: #4ECDC4
-- Accent: #45B7D1
-- Background: #1A1A2E
-- Text: #EAEAEA
-- Card: #16213E
+- Primary: #4F46E5  // Indigo-500 (운동 강조)
+- Secondary: #34D399 // Teal-400 (성장, 활력)
+- Accent: #FCD34D    // Yellow-300 (알림, 포인트)
+- Background: #111827 // Gray-900 (다크 모드)
+- Text: #E5E7EB      // Gray-200 (가독성)
+```
 
+2. 주요 화면 (마크다운)
+```
 ## 주요 화면
-1. 로그인 화면
-2. 메인 화면
+1. 메인 화면 (오늘의 운동, 진행 상황)
+2. 기록 화면 (운동 기록, 통계)
+3. 챌린지 화면 (다른 사용자들과 경쟁)
+4. 프로필 화면 (개인 정보, 설정)
+```
 
+3. HTML 프로토타입 (완전한 HTML 문서)
 ```html
 <!-- INTERACTIVE PROTOTYPE START -->
 <!DOCTYPE html>
 <html>
 <head>
+<title>운동 습관 형성 앱 프로토타입</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-    background: linear-gradient(135deg, #1A1A2E, #16213E); 
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
-    padding: 20px; 
-    min-height: 100vh;
-}
-.phone-mockup { 
-    width: 320px; 
-    background: linear-gradient(135deg, #2D2D44, #3A3A5C);
-    border-radius: 25px; 
-    padding: 8px;
+body { background: #111827; font-family: -apple-system, sans-serif; padding: 20px; color: #E5E7EB; }
+.phone-mockup {
+    width: 320px;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    border-radius: 30px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
     margin: 0 auto;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
-.screen { 
-    background: #1A1A2E; 
-    border-radius: 20px; 
-    height: 640px; 
-    overflow: hidden;
-    position: relative;
-}
+.phone-mockup:hover { transform: translateY(-5px); }
+.screen { background: #111827; border-radius: 20px; padding: 20px; height: 550px; overflow: auto; }
+h1 { color: #4F46E5; }
+h2 { margin-bottom: 10px; }
+.menu { display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #374151; }
+.menu a { color: #E5E7EB; text-decoration: none; }
+.menu a:hover { color: #4F46E5; }
+.workout-card { background: #1E293B; padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+.workout-card:hover { background: #374151; }
+.progress-bar { width: 100%; height: 10px; background: #374151; border-radius: 5px; overflow: hidden; }
+.progress-bar-fill { height: 10px; background: #34D399; width: 60%; display: block; }
 
-/* 로그인 화면 */
-.login-screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 30px;
-    text-align: center;
-}
-.logo {
-    font-size: 36px;
-    color: #FF6B35;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-.tagline {
-    color: #EAEAEA;
-    opacity: 0.8;
-    margin-bottom: 50px;
-    font-size: 14px;
-}
-.login-input {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    border: 2px solid #16213E;
-    border-radius: 12px;
-    background: #16213E;
-    color: #EAEAEA;
-    font-size: 16px;
-}
-.login-btn {
-    width: 100%;
-    padding: 15px;
-    margin: 20px 0;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #FF6B35, #FF8A65);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-.login-btn:hover {
-    transform: translateY(-2px);
-}
-.social-btn {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 2px solid #4ECDC4;
-    border-radius: 12px;
-    background: transparent;
-    color: #4ECDC4;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.social-btn:hover {
-    background: #4ECDC4;
-    color: #1A1A2E;
-}
-
-/* 메인 화면 */
-.main-screen {
-    display: none;
-    padding: 20px;
-}
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-.greeting {
-    color: #EAEAEA;
-    font-size: 18px;
-}
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #FF6B35, #4ECDC4);
-    cursor: pointer;
-}
-.stats-card {
-    background: #16213E;
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-.stats-title {
-    color: #4ECDC4;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-.stats-value {
-    color: #EAEAEA;
-    font-size: 24px;
-    font-weight: bold;
-}
-.start-run-btn {
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(135deg, #FF6B35, #FF8A65);
-    border: none;
-    border-radius: 50px;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    margin: 20px 0;
-    transition: transform 0.2s;
-}
-.start-run-btn:hover {
-    transform: scale(1.05);
-}
-.ad-banner {
-    background: linear-gradient(135deg, #45B7D1, #4ECDC4);
-    border-radius: 12px;
-    padding: 15px;
-    color: white;
-    text-align: center;
-    margin: 15px 0;
-    font-size: 14px;
-    cursor: pointer;
-}
-.bottom-nav {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: #16213E;
-    display: flex;
-    justify-content: space-around;
-    padding: 15px 0;
-}
-.nav-item {
-    color: #EAEAEA;
-    opacity: 0.6;
-    font-size: 12px;
-    cursor: pointer;
-    transition: opacity 0.2s;
-}
-.nav-item.active, .nav-item:hover {
-    opacity: 1;
-    color: #FF6B35;
-}
+/* 화면 전환 스타일 (숨김 처리) */
+.screen-section { display: none; }
+.screen-section.active { display: block; }
 </style>
 </head>
 <body>
+
 <div class="phone-mockup">
-    <!-- 로그인 화면 -->
-    <div class="screen login-screen" id="loginScreen">
-        <div class="logo">🏃‍♂️ RunTogether</div>
-        <div class="tagline">함께 달리는 즐거움</div>
-        
-        <input type="email" class="login-input" placeholder="이메일">
-        <input type="password" class="login-input" placeholder="비밀번호">
-        
-        <button class="login-btn" onclick="showMainScreen()">로그인</button>
-        
-        <div style="margin: 20px 0; color: #EAEAEA; opacity: 0.6;">또는</div>
-        
-        <button class="social-btn">🍎 Apple로 계속하기</button>
-        <button class="social-btn">📱 카카오로 계속하기</button>
-        <button class="social-btn">🌐 Google로 계속하기</button>
-        
-        <div style="margin-top: 30px; color: #EAEAEA; opacity: 0.6; font-size: 12px;">
-            계정이 없으신가요? <span style="color: #FF6B35; cursor: pointer;">회원가입</span>
-        </div>
-    </div>
+    <div class="screen">
 
-    <!-- 메인 화면 -->
-    <div class="screen main-screen" id="mainScreen">
-        <div class="header">
-            <div>
-                <div class="greeting">안녕하세요! 👋</div>
-                <div style="color: #FF6B35; font-weight: bold;">김러너님</div>
-            </div>
-            <div class="profile-pic" onclick="showLoginScreen()"></div>
-        </div>
-
-        <div class="stats-card">
-            <div class="stats-title">오늘의 기록</div>
-            <div style="display: flex; justify-content: space-between;">
-                <div>
-                    <div class="stats-value">3.2km</div>
-                    <div style="color: #EAEAEA; opacity: 0.6; font-size: 12px;">거리</div>
+        <!-- 메인 화면 -->
+        <div id="main" class="screen-section active">
+            <h1>오늘의 운동</h1>
+            <div class="workout-card">
+                <h2>푸쉬업 10회</h2>
+                <p>3세트</p>
+                <div class="progress-bar">
+                    <span class="progress-bar-fill"></span>
                 </div>
-                <div>
-                    <div class="stats-value">24:15</div>
-                    <div style="color: #EAEAEA; opacity: 0.6; font-size: 12px;">시간</div>
+            </div>
+            <div class="workout-card">
+                <h2>스쿼트 15회</h2>
+                <p>3세트</p>
+                <div class="progress-bar">
+                    <span class="progress-bar-fill" style="width: 30%;"></span>
                 </div>
             </div>
         </div>
 
-        <button class="start-run-btn">🏃‍♂️ 러닝 시작하기</button>
-
-        <div class="ad-banner">
-                스포츠웨어 50% 할인! 지금 확인하세요 →
+        <!-- 기록 화면 -->
+        <div id="history" class="screen-section">
+            <h1>운동 기록</h1>
+            <p>최근 7일간 운동 시간: 5시간 30분</p>
+            <p>이번 달 운동 횟수: 12회</p>
+            <p>최고 기록: 스쿼트 30회</p>
         </div>
 
-        <div class="stats-card">
-            <div class="stats-title">이주의 챌린지</div>
-            <div style="color: #EAEAEA;">주 3회 이상 러닝하기</div>
-            <div style="background: #FF6B35; height: 4px; border-radius: 2px; margin: 8px 0; width: 60%;"></div>
-            <div style="color: #EAEAEA; opacity: 0.6; font-size: 12px;">2/3 완료</div>
+        <!-- 챌린지 화면 -->
+        <div id="challenge" class="screen-section">
+            <h1>챌린지</h1>
+            <p>이번 주 챌린지: 매일 30분 운동하기</p>
+            <p>현재 순위: 5위</p>
+            <button style="background: #4F46E5; color: white; border: none; padding: 10px 20px; border-radius: 5px;">챌린지 참여</button>
         </div>
 
-        <div class="bottom-nav">
-            <div class="nav-item active">홈</div>
-            <div class="nav-item">기록</div>
-            <div class="nav-item">커뮤니티</div>
-            <div class="nav-item">프로필</div>
+        <!-- 프로필 화면 -->
+        <div id="profile" class="screen-section">
+            <h1>프로필</h1>
+            <p>이름: 홍길동</p>
+            <p>나이: 30세</p>
+            <p>목표: 건강한 습관 만들기</p>
+            <button style="background: #4F46E5; color: white; border: none; padding: 10px 20px; border-radius: 5px;">설정 변경</button>
         </div>
+
+        <div class="menu">
+            <a href="#" onclick="showScreen('main')">메인</a>
+            <a href="#" onclick="showScreen('history')">기록</a>
+            <a href="#" onclick="showScreen('challenge')">챌린지</a>
+            <a href="#" onclick="showScreen('profile')">프로필</a>
+        </div>
+
     </div>
 </div>
 
 <script>
-function showMainScreen() {
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('mainScreen').style.display = 'block';
+function showScreen(screenId) {
+    const screens = document.querySelectorAll('.screen-section');
+    screens.forEach(screen => screen.classList.remove('active'));
+    document.getElementById(screenId).classList.add('active');
 }
-
-function showLoginScreen() {
-    document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('mainScreen').style.display = 'none';
-}
-
-// 네비게이션 클릭 효과
-document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', function() {
-        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
-
-// 광고 배너 클릭 효과
-document.querySelector('.ad-banner').addEventListener('click', function() {
-    this.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-        this.style.transform = 'scale(1)';
-    }, 200);
-});
 </script>
+
 </body>
 </html>
 <!-- INTERACTIVE PROTOTYPE END -->
 ```
+**설명:**
+
+*   **컬러 팔레트:** 어두운 배경에 눈에 띄는 색상을 사용하여 사용성을 높였습니다.
+*   **HTML:** 각 화면을 `div`로 나누고, JavaScript를 사용하여 화면 전환을 구현했습니다.
+*   **CSS:** 기본적인 스타일을 적용하여 프로토타입의 시각적인 완성도를 높였습니다.
+*   **JavaScript:** `showScreen` 함수를 통해 각 화면을 보여주고 숨기는 기능을 구현했습니다. 메뉴 클릭 시 해당 화면이 표시됩니다.
+*   **핵심 UI:** 각 화면에 필요한 핵심적인 UI 요소만 포함하여 간결하게 만들었습니다.
+*   **인터랙션:** 메뉴를 클릭하면 해당 화면으로 전환되는 간단한 인터랙션을 추가했습니다.
+*   **반응형:** `phone-mockup` 클래스를 사용하여 모바일 화면에 최적화된 디자인을 제공합니다.
+
+**추가 설명:**
+
+*   더 많은 기능을 추가하려면 JavaScript를 사용하여 각 UI 요소에 대한 인터랙션을 구현할 수 있습니다.
+*   CSS를 사용하여 디자인을 더욱 세련되게 만들 수 있습니다.
+*   API를 사용하여 실제 데이터를 가져와서 표시할 수 있습니다.
