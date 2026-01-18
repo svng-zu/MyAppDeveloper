@@ -1,23 +1,30 @@
 # UI/UX 디자인 가이드
 
-## 컬러 팔레트
+알겠습니다. 런닝 배틀 앱의 PRD를 기반으로 디자인 컨셉, 주요 화면, HTML 프로토타입을 생성해 드리겠습니다.
+
+## 1. 컬러 팔레트
+
 ```
 ## 컬러 팔레트
-- Primary: #0D6EFF (나이키 블루)
-- Secondary: #FFFFFF (화이트)
-- Accent: #FF0000 (나이키 레드)
+- Primary: #4CAF50 (싱그러운 런닝을 연상시키는 녹색)
+- Secondary: #2196F3 (활동적이고 시원한 느낌의 파란색)
+- Accent: #FF9800 (에너지 넘치는 주황색, 강조 색상)
 ```
 
-## 주요 화면
+## 2. 주요 화면
+
 ```
 ## 주요 화면
 1.  로그인/회원가입 화면
-2.  메인 화면 (배틀 매칭)
-3.  배틀 진행 화면
-4.  결과 화면
+2.  프로필 설정 화면
+3.  메인 화면 (배틀 찾기, 내 기록, 친구 목록)
+4.  배틀 매칭 화면
+5.  실시간 배틀 화면
+6.  배틀 결과 화면
 ```
 
-## HTML 프로토타입
+## 3. HTML 프로토타입
+
 ```html
 <!-- INTERACTIVE PROTOTYPE START -->
 <!DOCTYPE html>
@@ -29,7 +36,7 @@
 <style>
 /* CSS */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -45,205 +52,233 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+h1, h2 {
+    color: #4CAF50;
     text-align: center;
-    color: #0D6EFF; /* Primary Color */
 }
 
-.button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    background-color: #0D6EFF; /* Primary Color */
+button {
+    background-color: #4CAF50;
     color: white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 16px;
 }
 
-.button:hover {
-    background-color: #0056b3;
+button:hover {
+    opacity: 0.8;
 }
 
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.input-group input {
+input[type="text"], input[type="password"] {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-/* Nike Style Enhancements */
-body {
-    background-color: #000; /* Black Background */
-    color: #fff; /* White Text */
-}
-
-.container {
-    background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent white */
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* Red glow effect */
-}
-
-h1 {
-    color: #FF0000; /* Nike Red */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.button {
-    background-color: #FF0000; /* Nike Red */
-    border: 2px solid #fff; /* White border */
-}
-
-.button:hover {
-    background-color: #b30000;
-}
-
-/* 배틀 화면 스타일 */
-#battleScreen {
-    display: none;
-    text-align: center;
-}
-
-#battleScreen h2 {
-    color: #FF0000;
-    margin-bottom: 20px;
-}
-
-#battleProgress {
-    width: 80%;
-    margin: 20px auto;
-    height: 30px;
-    background-color: #222;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-#myProgress, #opponentProgress {
-    height: 100%;
-    background-color: #0D6EFF;
-    width: 0%;
-    transition: width 0.5s ease;
-}
-
-.progressLabel {
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px auto;
     display: block;
-    margin-top: 5px;
-    font-size: 0.8em;
 }
 
-/* 결과 화면 스타일 */
-#resultScreen {
-    display: none;
+.battle-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.battle-stats div {
     text-align: center;
 }
 
-#resultScreen h2 {
-    color: #FF0000;
-    margin-bottom: 20px;
+#map {
+    height: 300px;
+    background-color: #eee;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 300px;
+}
+
+/* 추가 스타일 (선택 사항) */
+.social-login {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.social-login button {
+    background-color: #2196F3; /* 파란색 계열 */
+    margin: 0 5px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
 }
 </style>
 </head>
 <body>
 
-<div class="container" id="loginScreen">
+<div class="container">
     <h1>RunBattle</h1>
-    <a href="#" class="button" onclick="showMainScreen()">SNS 로그인 (구글)</a>
-    <a href="#" class="button" onclick="showMainScreen()">SNS 로그인 (카카오)</a>
-    <a href="#" class="button" onclick="showMainScreen()">SNS 로그인 (애플)</a>
-</div>
 
-<div class="container" id="mainScreen" style="display:none;">
-    <h1>RunBattle</h1>
-    <p>환영합니다, 러너!</p>
-    <button class="button" onclick="findBattle()">배틀 찾기 (1km)</button>
-    <button class="button" onclick="findBattle()">배틀 찾기 (3km)</button>
-    <button class="button" onclick="findBattle()">배틀 찾기 (5km)</button>
-</div>
-
-<div class="container" id="battleScreen" style="display:none;">
-    <h2>실시간 배틀 중!</h2>
-    <p>상대를 기다리는 중...</p>
-
-    <div id="battleProgress">
-        <div id="myProgress"></div>
+    <!-- 로그인/회원가입 화면 -->
+    <div id="login-screen">
+        <h2>로그인</h2>
+        <input type="text" id="username" placeholder="사용자 이름">
+        <input type="password" id="password" placeholder="비밀번호">
+        <button onclick="goToMain()">로그인</button>
+        <p>또는</p>
+        <div class="social-login">
+            <button>Google</button>
+            <button>Kakao</button>
+        </div>
+        <p>계정이 없으신가요? <a href="#" onclick="showSignup()">회원가입</a></p>
     </div>
-    <span class="progressLabel">나의 진행률</span>
 
-    <div id="battleProgress">
-        <div id="opponentProgress"></div>
+    <div id="signup-screen" style="display:none;">
+        <h2>회원가입</h2>
+        <input type="text" id="new-username" placeholder="사용자 이름">
+        <input type="password" id="new-password" placeholder="비밀번호">
+        <button onclick="goToMain()">회원가입</button>
+        <p>이미 계정이 있으신가요? <a href="#" onclick="showLogin()">로그인</a></p>
     </div>
-    <span class="progressLabel">상대방 진행률</span>
 
-    <button class="button" onclick="endBattle()">포기하기</button>
-</div>
+    <!-- 프로필 설정 화면 -->
+    <div id="profile-screen" style="display:none;">
+        <h2>프로필 설정</h2>
+        <img src="placeholder-profile.png" alt="프로필 사진" class="profile-image">
+        <input type="text" id="nickname" placeholder="닉네임">
+        <input type="text" id="running-level" placeholder="런닝 레벨 (초급, 중급, 고급)">
+        <button onclick="goToMain()">저장</button>
+    </div>
 
-<div class="container" id="resultScreen" style="display:none;">
-    <h2>배틀 결과</h2>
-    <p id="resultMessage"></p>
-    <button class="button" onclick="showMainScreen()">메인 화면으로</button>
+    <!-- 메인 화면 -->
+    <div id="main-screen" style="display:none;">
+        <h2>메인 화면</h2>
+        <button onclick="goToMatch()">배틀 찾기</button>
+        <button onclick="showRecords()">내 기록</button>
+        <button onclick="showFriends()">친구 목록</button>
+    </div>
+
+    <!-- 배틀 매칭 화면 -->
+    <div id="match-screen" style="display:none;">
+        <h2>배틀 매칭</h2>
+        <p>상대방을 찾는 중...</p>
+        <button onclick="startBattle()">매칭 시작</button>
+    </div>
+
+    <!-- 실시간 배틀 화면 -->
+    <div id="battle-screen" style="display:none;">
+        <h2>실시간 배틀</h2>
+        <div class="battle-stats">
+            <div>내 페이스: <span id="my-pace">4:30</span></div>
+            <div>상대 페이스: <span id="opponent-pace">4:45</span></div>
+        </div>
+        <div id="map">지도 (GPS 연동)</div>
+        <button onclick="endBattle()">포기</button>
+    </div>
+
+    <!-- 배틀 결과 화면 -->
+    <div id="result-screen" style="display:none;">
+        <h2>배틀 결과</h2>
+        <p>승리!</p>
+        <p>획득한 점수: +10</p>
+        <button onclick="goToMain()">메인으로</button>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 RunBattle
+    </div>
 </div>
 
 <script>
 // JavaScript
-function showMainScreen() {
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('mainScreen').style.display = 'block';
+function goToMain() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('signup-screen').style.display = 'none';
+    document.getElementById('profile-screen').style.display = 'none';
+    document.getElementById('main-screen').style.display = 'block';
+    document.getElementById('match-screen').style.display = 'none';
+    document.getElementById('battle-screen').style.display = 'none';
+    document.getElementById('result-screen').style.display = 'none';
 }
 
-function findBattle() {
-    document.getElementById('mainScreen').style.display = 'none';
-    document.getElementById('battleScreen').style.display = 'block';
-
-    // 임시로 3초 후 배틀 시작
-    setTimeout(startBattle, 3000);
+function goToMatch() {
+    document.getElementById('main-screen').style.display = 'none';
+    document.getElementById('match-screen').style.display = 'block';
 }
 
 function startBattle() {
-    // 시뮬레이션: 10초 동안 진행률 증가
-    let myProgress = 0;
-    let opponentProgress = 0;
-    const interval = setInterval(() => {
-        myProgress += Math.random() * 10; // 랜덤 진행률
-        opponentProgress += Math.random() * 10;
-
-        myProgress = Math.min(myProgress, 100);
-        opponentProgress = Math.min(opponentProgress, 100);
-
-        document.getElementById('myProgress').style.width = myProgress + '%';
-        document.getElementById('opponentProgress').style.width = opponentProgress + '%';
-
-        if (myProgress >= 100 || opponentProgress >= 100) {
-            clearInterval(interval);
-            endBattle(myProgress >= 100); // 나의 승리 여부
-        }
-    }, 500);
+    document.getElementById('match-screen').style.display = 'none';
+    document.getElementById('battle-screen').style.display = 'block';
 }
 
-function endBattle(iWon = false) {
-    document.getElementById('battleScreen').style.display = 'none';
-    document.getElementById('resultScreen').style.display = 'block';
-
-    const resultMessage = iWon ? "승리하셨습니다!" : "패배하셨습니다.";
-    document.getElementById('resultMessage').innerText = resultMessage;
+function endBattle() {
+    document.getElementById('battle-screen').style.display = 'none';
+    document.getElementById('result-screen').style.display = 'block';
 }
+
+function showRecords() {
+    alert('내 기록 화면으로 이동');
+}
+
+function showFriends() {
+    alert('친구 목록 화면으로 이동');
+}
+
+function showSignup() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('signup-screen').style.display = 'block';
+}
+
+function showLogin() {
+    document.getElementById('signup-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'block';
+}
+
+// 초기 화면 설정 (로그인 화면)
+document.getElementById('login-screen').style.display = 'block';
 </script>
 
 </body>
 </html>
 <!-- INTERACTIVE PROTOTYPE END -->
 ```
+
+**설명:**
+
+*   **컬러 팔레트:** 런닝 앱에 어울리는 활기차고 건강한 느낌의 색상들을 선택했습니다.
+*   **주요 화면:** PRD에 명시된 핵심 기능들을 중심으로 화면들을 구성했습니다.
+*   **HTML 프로토타입:**
+    *   각 화면을 `div`로 감싸고, CSS를 사용하여 기본적인 스타일을 적용했습니다.
+    *   JavaScript를 사용하여 버튼 클릭 시 화면 전환이 가능하도록 구현했습니다.
+    *   실제 앱처럼 보이도록 기본적인 UI 요소들을 추가했습니다.
+    *   로그인, 메인, 매칭, 배틀, 결과 화면을 구현하고 JavaScript로 화면 전환을 시뮬레이션했습니다.
+    *   프로필 설정 화면, 내 기록 화면, 친구 목록 화면은 간단한 알림으로 대체했습니다.
+    *   지도는 간단한 placeholder로 표시했습니다.
+
+**추가 설명:**
+
+*   **반응형 디자인:** `<meta name="viewport" ...>` 태그를 사용하여 모바일 환경에서도 잘 보이도록 했습니다.
+*   **프로필 사진:** `placeholder-profile.png` 파일이 필요합니다.  적절한 이미지를 추가하거나, CSS에서 배경색을 지정할 수 있습니다.
+*   **GPS 연동:** 실제 지도 API (예: Google Maps API)를 사용하여 구현해야 합니다.
+*   **실시간 배틀:** WebSocket 등을 사용하여 실시간 데이터 통신을 구현해야 합니다.
+*   **데이터베이스 연동:** 사용자 데이터, 런닝 기록 등을 저장하고 관리하기 위해 데이터베이스 연동이 필요합니다.
+*   **스타일:** CSS를 더 자세하게 작성하여 앱의 디자인을 개선할 수 있습니다.
+
+이 프로토타입은 기본적인 기능을 시뮬레이션하는 데 중점을 두었으며, 실제 앱 개발을 위해서는 더 많은 기능과 디자인 개선이 필요합니다.
