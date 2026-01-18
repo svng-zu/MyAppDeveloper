@@ -1,9 +1,5 @@
 # UI/UX 디자인 가이드
 
-최고급 UI/UX 디자이너로서, 제공된 PRD를 기반으로 시각적으로 매력적인 인터랙티브 HTML 프로토타입을 생성하겠습니다.
-
-## 컬러 팔레트
-```
 ## 컬러 팔레트
 - Primary: #6366F1 (생생한 파랑/보라)
 - Secondary: #10B981 (밝은 녹색)
@@ -11,16 +7,11 @@
 - Background: #0F172A (깊은 네이비)
 - Surface: #1E293B (어두운 회색)
 - Text: #F8FAFC (밝은 흰색)
-```
 
-## 주요 화면
-```
 ## 주요 화면
 1. 로그인 화면
 2. 메인 대시보드
-```
 
-## HTML 프로토타입 (완전한 HTML 문서)
 ```html
 <!-- INTERACTIVE PROTOTYPE START -->
 <!DOCTYPE html>
@@ -28,118 +19,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>반짝이는 앱 프로토타입</title>
+<title>Amazing App Prototype</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
+/* Reset & General Styles */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
     background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-    font-family: 'Poppins', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #F8FAFC;
     padding: 40px 20px;
     min-height: 100vh;
-    color: #F8FAFC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 480px; /* 모바일 화면에 맞게 조정 */
+    width: 100%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-}
-
-.screen-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.phone-mockup {
-    background: linear-gradient(135deg, #1E293B, #334155);
-    border-radius: 40px;
     padding: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
 }
 
-.phone-mockup::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-    transform: rotate(45deg);
-    transition: all 0.6s;
-}
-
-.phone-mockup:hover::before {
-    left: 100%;
-}
-
-.phone-mockup:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 30px 80px rgba(99, 102, 241, 0.4);
-}
-
-.screen {
+/* Login Screen Styles */
+.login-screen {
     background: rgba(30, 41, 59, 0.8);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(148, 163, 184, 0.1);
     border-radius: 30px;
-    padding: 30px;
-    min-height: 600px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: fadeInUp 0.5s ease-out;
 }
 
-.screen::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #6366F1, #8B5CF6, #EC4899);
-}
-
-.screen-title {
-    color: #F8FAFC;
-    font-size: 28px;
+.login-screen h1 {
+    font-size: 36px;
     font-weight: 700;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     background: linear-gradient(135deg, #6366F1, #8B5CF6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-align: center;
 }
 
-.card {
-    background: rgba(30, 41, 59, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(148, 163, 184, 0.1);
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 20px;
+.input-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #CBD5E1;
+}
+
+.input-field {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgba(47, 57, 73, 0.8);
+    color: #F8FAFC;
+    outline: none;
     transition: all 0.3s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(99, 102, 241, 0.5);
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+.input-field:focus {
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 .btn-primary {
@@ -148,7 +97,7 @@ body {
     border: none;
     padding: 16px 32px;
     border-radius: 16px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
@@ -166,59 +115,79 @@ body {
     transform: translateY(0);
 }
 
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    font-size: 14px;
-    color: #94A3B8;
-    margin-bottom: 8px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 14px 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    background: rgba(30, 41, 59, 0.6);
-    color: #F8FAFC;
-    font-size: 16px;
-    transition: border-color 0.3s;
-}
-
-.input-group input:focus {
-    outline: none;
-    border-color: #6366F1;
-}
-
-.stats-box {
-    background: rgba(30, 41, 59, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 15px;
-    text-align: center;
-    transition: transform 0.3s;
+/* Dashboard Styles */
+.dashboard {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(15px);
     border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.5s ease-out;
 }
 
-.stats-box:hover {
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.dashboard-title {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #334155;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.profile-icon:hover {
+    background-color: #475569;
+}
+
+.card {
+    background: rgba(47, 57, 73, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.card:hover {
     transform: translateY(-5px);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
 }
 
-.stats-box h3 {
-    font-size: 24px;
+.card h3 {
+    font-size: 20px;
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-.stats-box p {
-    font-size: 14px;
-    color: #94A3B8;
+.card p {
+    color: #CBD5E1;
+    font-size: 15px;
+    line-height: 1.6;
 }
 
+/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -230,130 +199,81 @@ body {
     }
 }
 
-.phone-mockup {
-    animation: fadeInUp 0.6s ease-out backwards;
-}
-
-.phone-mockup:nth-child(1) { animation-delay: 0.1s; }
-.phone-mockup:nth-child(2) { animation-delay: 0.2s; }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
-
-    .screen-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .phone-mockup {
-        padding: 15px;
-    }
-
-    .screen {
-        padding: 20px;
-        min-height: auto;
-    }
-
-    .screen-title {
-        font-size: 24px;
-    }
-
-    .btn-primary {
-        padding: 14px 24px;
-        font-size: 15px;
-    }
+/* Utility Classes */
+.hidden {
+    display: none;
 }
 </style>
 </head>
 <body>
 <div class="container">
-    <div class="screen-grid">
-        <!-- 로그인 화면 -->
-        <div class="phone-mockup">
-            <div class="screen">
-                <div>
-                    <h2 class="screen-title">로그인</h2>
-                    <div class="input-group">
-                        <label for="username">아이디</label>
-                        <input type="text" id="username" placeholder="아이디를 입력하세요">
-                    </div>
-                    <div class="input-group">
-                        <label for="password">비밀번호</label>
-                        <input type="password" id="password" placeholder="비밀번호를 입력하세요">
-                    </div>
-                </div>
-                <button class="btn-primary" id="loginBtn">로그인</button>
-            </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <h1>Welcome Back!</h1>
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="input-field" placeholder="your.email@example.com">
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="input-field" placeholder="Your Password">
+        </div>
+        <button class="btn-primary" onclick="showDashboard()">Login</button>
+    </div>
+
+    <!-- Dashboard (Initially Hidden) -->
+    <div id="dashboard" class="dashboard hidden">
+        <div class="dashboard-header">
+            <h2 class="dashboard-title">My Dashboard</h2>
+            <div class="profile-icon">JD</div>
         </div>
 
-        <!-- 메인 대시보드 -->
-        <div class="phone-mockup">
-            <div class="screen">
-                <div>
-                    <h2 class="screen-title">메인 대시보드</h2>
-                    <div class="stats-box">
-                        <h3>1,234</h3>
-                        <p>오늘의 걸음 수</p>
-                    </div>
-                    <div class="stats-box">
-                        <h3>$45.67</h3>
-                        <p>이번 달 지출</p>
-                    </div>
-                    <div class="stats-box">
-                        <h3>78%</h3>
-                        <p>목표 달성률</p>
-                    </div>
-                </div>
-                <button class="btn-primary" id="dashboardBtn">상세 정보 보기</button>
-            </div>
+        <div class="card">
+            <h3>Daily Progress</h3>
+            <p>Track your daily goals and achievements.</p>
+        </div>
+
+        <div class="card">
+            <h3>Weekly Summary</h3>
+            <p>Review your progress for the past week.</p>
         </div>
     </div>
+
 </div>
 
 <script>
-// 인터랙티브 기능
-document.querySelectorAll('.phone-mockup').forEach((phone, index) => {
-    phone.addEventListener('click', function() {
-        this.style.transform = this.style.transform.includes('scale(1.05)')
-            ? 'translateY(-10px) scale(1.02)'
-            : 'translateY(-10px) scale(1.05)';
-    });
-});
+function showDashboard() {
+    // 간단한 인증 로직 (실제 앱에서는 더 복잡하게)
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-document.getElementById('loginBtn').addEventListener('click', function(e) {
-    e.stopPropagation();
-    this.textContent = '✓ 로그인 완료!';
-    setTimeout(() => {
-        this.textContent = '로그인';
-    }, 1500);
-});
-
-document.getElementById('dashboardBtn').addEventListener('click', function(e) {
-    e.stopPropagation();
-    this.textContent = '✓ 로딩 중...';
-    setTimeout(() => {
-        this.textContent = '상세 정보 보기';
-    }, 1500);
-});
-
+    if (email && password) {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+    } else {
+        alert('Please enter your email and password.');
+    }
+}
 </script>
 </body>
 </html>
 <!-- INTERACTIVE PROTOTYPE END -->
 ```
+**설명:**
 
-**핵심 구현 사항:**
+*   **컬러 팔레트**: 제공된 팔레트를 사용하여 디자인의 일관성을 유지합니다.
+*   **글래스모피즘**: `backdrop-filter: blur()` 속성을 사용하여 반투명 효과를 구현합니다.
+*   **애니메이션**: `transition` 속성을 사용하여 호버 효과 및 화면 전환에 부드러운 애니메이션을 적용합니다.
+*   **시각적 계층**: 제목, 부제목, 카드 등의 텍스트 크기와 스타일을 조정하여 시각적 계층을 명확하게 합니다.
+*   **인터랙티브 요소**: 버튼 클릭 시 화면이 전환되도록 JavaScript를 사용하여 간단한 상호 작용을 구현합니다.
+*   **반응형 디자인**: `meta name="viewport"` 태그를 사용하여 모바일 화면에 최적화된 디자인을 제공합니다.
+*   **애니메이션 효과**: 화면이 나타날 때 `fadeInUp` 애니메이션을 적용하여 부드러운 시각적 효과를 제공합니다.
 
-*   **생동감 있는 그라데이션:** 배경 및 버튼에 적용.
-*   **부드러운 애니메이션:** 호버 효과, 클릭 효과, 페이지 로딩 시 애니메이션.
-*   **글래스모피즘 효과:** 카드 배경에 블러 및 투명도 적용.
-*   **명확한 시각적 계층:** 제목, 부제목, 카드 강조.
-*   **각 화면 고유 콘텐츠:** 로그인 화면과 메인 대시보드 구분.
-*   **인터랙티브 요소:** 버튼 클릭 시 텍스트 변경.
-*   **반응형 디자인:** 다양한 화면 크기 지원.
-*   **폰트:** Poppins 폰트 사용 (구글 폰트 CDN 연결).
-*   **스타일 가이드 준수:** 배경, 카드, 버튼, 폰트, 간격, 그림자 등 PRD 스타일 가이드 준수.
+**개선 사항:**
 
-이 프로토타입은 디자인 요구 사항을 충족하며, 시각적으로 매력적이고 인터랙티브한 사용자 경험을 제공합니다.
+*   더 많은 화면 추가 (상세 화면, 프로필, 설정)
+*   더 복잡한 상호 작용 (데이터 로딩, 폼 유효성 검사)
+*   더 다양한 UI 요소 (차트, 그래프, 아이콘)
+*   실제 데이터 통합 (API 호출)
+*   접근성 고려 (키보드 탐색, 스크린 리더 지원)
