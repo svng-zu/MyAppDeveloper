@@ -1,21 +1,21 @@
 # UI/UX 디자인 가이드
 
 ## 컬러 팔레트
-- Primary: #6366F1 (메인 액션, 버튼)
-- Secondary: #10B981 (성공, 완료 상태)
-- Accent: #F59E0B (강조, 알림)
-- Background: #0F172A (배경)
-- Surface: #1E293B (카드, 모달)
-- Text: #F8FAFC (텍스트)
-- Text Secondary: #94A3B8 (보조 텍스트)
+- Primary: #FF6B6B (메인 액션, 러닝 버튼)
+- Secondary: #4ECDC4 (성공, 완료 상태)
+- Accent: #FFE66D (강조, 기록 하이라이트)
+- Background: #2C3E50 (배경)
+- Surface: #34495E (카드 배경)
+- Text: #ECF0F1 (메인 텍스트)
+- Text-Secondary: #BDC3C7 (보조 텍스트)
 
 ## 주요 화면
-1. 로그인 화면
+1. 로그인/회원가입
 2. 메인 대시보드 (광고 배너 포함)
-3. 러닝 기록 화면
-4. 런닝 트래킹 화면
+3. 러닝 트래킹 화면
+4. 러닝 완료 & 기록
 5. 커뮤니티 피드
-6. 프로필/통계 화면
+6. 프로필 & 통계
 
 <!-- INTERACTIVE PROTOTYPE START -->
 <!DOCTYPE html>
@@ -23,531 +23,489 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RunTogether - Interactive Prototype</title>
+    <title>RunTogether - 인터랙티브 프로토타입</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            background: linear-gradient(135deg, #2C3E50, #34495E);
             min-height: 100vh;
             padding: 20px;
+            overflow-x: auto;
         }
-
+        
         .prototype-container {
             display: flex;
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
-
+        
         .phone-mockup {
             width: 320px;
-            background: linear-gradient(135deg, #334155, #475569);
+            background: linear-gradient(145deg, #34495E, #2C3E50);
             border-radius: 30px;
-            padding: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            padding: 15px;
+            box-shadow: 
+                0 20px 60px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            cursor: pointer;
         }
-
+        
         .phone-mockup:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 80px rgba(99, 102, 241, 0.4);
+            box-shadow: 
+                0 30px 80px rgba(255, 107, 107, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2);
         }
-
-        .phone-mockup.active {
-            transform: scale(1.1);
-            z-index: 10;
-        }
-
+        
         .screen {
-            background: #0F172A;
-            border-radius: 25px;
-            height: 640px;
-            overflow-y: auto;
+            background: #2C3E50;
+            border-radius: 20px;
+            height: 600px;
+            overflow: hidden;
             position: relative;
+            border: 2px solid #34495E;
         }
-
+        
         .screen-header {
-            background: #1E293B;
+            background: #34495E;
             padding: 15px 20px;
-            border-radius: 25px 25px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .screen-title {
-            color: #F8FAFC;
-            font-size: 18px;
+            color: #ECF0F1;
             font-weight: 600;
+            border-bottom: 1px solid #4A5F7A;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-
+        
         .screen-content {
             padding: 20px;
+            height: calc(100% - 60px);
+            overflow-y: auto;
+            color: #ECF0F1;
         }
-
+        
         /* 로그인 화면 */
-        .login-container {
+        .login-form {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            padding: 40px 30px;
+            gap: 20px;
+            margin-top: 60px;
         }
-
+        
         .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #6366F1, #8B5CF6);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 32px;
-        }
-
-        .app-name {
-            color: #F8FAFC;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .app-tagline {
-            color: #94A3B8;
-            font-size: 16px;
+            text-align: center;
             margin-bottom: 40px;
-            text-align: center;
         }
-
+        
+        .logo h1 {
+            color: #FF6B6B;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .logo p {
+            color: #BDC3C7;
+            font-size: 14px;
+        }
+        
         .input-group {
-            width: 100%;
-            margin-bottom: 15px;
+            position: relative;
         }
-
-        .input-field {
+        
+        .input-group input {
             width: 100%;
             padding: 15px;
-            background: #1E293B;
-            border: 2px solid #334155;
+            border: 2px solid #4A5F7A;
             border-radius: 12px;
-            color: #F8FAFC;
+            background: #34495E;
+            color: #ECF0F1;
             font-size: 16px;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
-
-        .input-field:focus {
+        
+        .input-group input:focus {
             outline: none;
-            border-color: #6366F1;
+            border-color: #FF6B6B;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
         }
-
-        .primary-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+        
+        .btn {
+            padding: 15px 25px;
             border: none;
             border-radius: 12px;
-            color: white;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 10px 0;
+            text-align: center;
         }
-
-        .primary-btn:hover {
+        
+        .btn-primary {
+            background: #FF6B6B;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #FF5252;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
-
-        .social-login {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .social-btn {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid #334155;
-            border-radius: 8px;
-            background: transparent;
-            color: #F8FAFC;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .social-btn:hover {
-            border-color: #6366F1;
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        /* 메인 대시보드 */
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .user-greeting {
-            color: #F8FAFC;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .user-subtitle {
-            color: #94A3B8;
-            font-size: 14px;
-        }
-
-        .notification-btn {
-            width: 40px;
-            height: 40px;
-            background: #1E293B;
-            border: none;
-            border-radius: 10px;
-            color: #F8FAFC;
-            cursor: pointer;
-        }
-
-        .ad-banner {
-            background: linear-gradient(135deg, #F59E0B, #F97316);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
+        
+        .btn-social {
+            background: #4ECDC4;
             color: white;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            margin-top: 10px;
         }
-
-        .ad-banner:hover {
-            transform: scale(1.02);
+        
+        .btn-social:hover {
+            background: #26D0CE;
         }
-
-        .stats-grid {
+        
+        /* 대시보드 */
+        .dashboard-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
             margin-bottom: 20px;
         }
-
+        
         .stat-card {
-            background: #1E293B;
-            border-radius: 15px;
+            background: #34495E;
             padding: 20px;
+            border-radius: 15px;
             text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .stat-number {
-            color: #6366F1;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .stat-label {
-            color: #94A3B8;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        .quick-actions {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: 15px;
-            background: #1E293B;
-            border: 2px solid #334155;
-            border-radius: 12px;
-            color: #F8FAFC;
-            cursor: pointer;
+            border: 1px solid #4A5F7A;
             transition: all 0.3s ease;
-            text-align: center;
         }
-
-        .action-btn:hover {
-            border-color: #6366F1;
-            background: rgba(99, 102, 241, 0.1);
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 230, 109, 0.2);
         }
-
-        .action-btn.primary {
-            background: linear-gradient(135deg, #6366F1, #8B5CF6);
-            border-color: transparent;
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFE66D;
+            margin-bottom: 5px;
         }
-
-        /* 러닝 기록 화면 */
-        .running-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .running-status {
-            color: #10B981;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .running-time {
-            color: #F8FAFC;
-            font-size: 48px;
-            font-weight: 700;
-            font-family: 'Courier New', monospace;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .metric-card {
-            background: #1E293B;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .metric-value {
-            color: #F8FAFC;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .metric-unit {
-            color: #94A3B8;
+        
+        .stat-label {
+            color: #BDC3C7;
             font-size: 12px;
         }
-
-        .metric-label {
-            color: #94A3B8;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .map-placeholder {
-            background: #1E293B;
-            border-radius: 15px;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94A3B8;
-            margin-bottom: 20px;
+        
+        .ad-banner {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+            color: white;
             position: relative;
             overflow: hidden;
         }
-
-        .running-path {
+        
+        .ad-banner::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 60%;
-            border: 3px solid #10B981;
-            border-radius: 20px;
-            border-style: dashed;
-            animation: pathGlow 2s infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s infinite;
         }
-
-        @keyframes pathGlow {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+        
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-
-        .control-buttons {
-            display: flex;
-            gap: 10px;
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
         }
-
-        .control-btn {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
+        
+        .action-btn {
+            background: #34495E;
+            border: 2px solid #4A5F7A;
+            padding: 20px;
+            border-radius: 15px;
+            color: #ECF0F1;
+            text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .stop-btn {
-            background: #EF4444;
+        
+        .action-btn:hover {
+            background: #FF6B6B;
+            border-color: #FF6B6B;
+            transform: scale(1.05);
+        }
+        
+        /* 러닝 트래킹 */
+        .running-display {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .running-time {
+            font-size: 48px;
+            font-weight: bold;
+            color: #FFE66D;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .running-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+        
+        .running-stat {
+            text-align: center;
+        }
+        
+        .running-stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4ECDC4;
+        }
+        
+        .running-stat-label {
+            font-size: 12px;
+            color: #BDC3C7;
+            margin-top: 5px;
+        }
+        
+        .control-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .btn-control {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-pause {
+            background: #FFE66D;
+            color: #2C3E50;
+        }
+        
+        .btn-stop {
+            background: #FF6B6B;
             color: white;
         }
-
-        .pause-btn {
-            background: #F59E0B;
-            color: white;
+        
+        .btn-control:hover {
+            transform: scale(1.1);
         }
-
+        
         /* 커뮤니티 피드 */
-        .feed-post {
-            background: #1E293B;
+        .post {
+            background: #34495E;
             border-radius: 15px;
-            padding: 20px;
+            padding: 15px;
             margin-bottom: 15px;
-            transition: transform 0.3s ease;
+            border: 1px solid #4A5F7A;
+            transition: all 0.3s ease;
         }
-
-        .feed-post:hover {
+        
+        .post:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
-
+        
         .post-header {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
-
-        .user-avatar {
+        
+        .post-avatar {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #6366F1, #8B5CF6);
             border-radius: 50%;
+            background: #FF6B6B;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 600;
+            font-weight: bold;
             margin-right: 10px;
         }
-
-        .post-user-info {
-            flex: 1;
-        }
-
-        .post-username {
-            color: #F8FAFC;
-            font-weight: 600;
+        
+        .post-info h4 {
+            color: #ECF0F1;
             font-size: 14px;
+            margin-bottom: 2px;
         }
-
-        .post-time {
-            color: #94A3B8;
+        
+        .post-info span {
+            color: #BDC3C7;
             font-size: 12px;
         }
-
+        
         .post-content {
-            color: #F8FAFC;
+            color: #ECF0F1;
+            margin: 10px 0;
             line-height: 1.5;
-            margin-bottom: 15px;
         }
-
+        
         .post-stats {
             display: flex;
             gap: 20px;
-            margin-bottom: 15px;
+            margin: 10px 0;
+            padding: 10px;
+            background: #2C3E50;
+            border-radius: 8px;
         }
-
+        
         .post-stat {
-            color: #94A3B8;
             font-size: 12px;
+            color: #4ECDC4;
         }
-
-        .post-stat.highlight {
-            color: #10B981;
-            font-weight: 600;
-        }
-
+        
         .post-actions {
             display: flex;
             gap: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #334155;
+            margin-top: 10px;
         }
-
+        
         .post-action {
             background: none;
             border: none;
-            color: #94A3B8;
+            color: #BDC3C7;
             cursor: pointer;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .post-action:hover {
-            color: #6366F1;
-        }
-
-        .post-action.liked {
-            color: #EF4444;
-        }
-
-        /* 네비게이션 */
-        .bottom-nav {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #1E293B;
-            padding: 15px;
-            border-radius: 0 0 25px 25px;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #94A3B8;
-            cursor: pointer;
-            transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
             font-size: 12px;
         }
-
-        .nav-item:hover, .nav-item.active {
-            color: #6366F1;
+        
+        .post-action:hover {
+            background: #4A5F7A;
+            color: #ECF0F1;
         }
-
-        .nav-icon {
+        
+        .fab {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #FF6B6B;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+        }
+        
+        /* 프로필 */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #FF6B6B;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .profile-name {
+            color: #ECF0F1;
             font-size: 20px;
             margin-bottom: 5px;
         }
-
-        /* 공통 애니메이션 */
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
+        
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .profile-stat {
+            text-align: center;
         }
-
-        .pulse {
+        
+        .profile-stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4ECDC4;
+        }
+        
+        .profile-stat-label {
+            font-size: 12px;
+            color: #BDC3C7;
+            margin-top: 3px;
+        }
+        
+        .screen-title {
+            color: #ECF0F1;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ECDC4;
+            display: inline-block;
+            margin-left: 10px;
             animation: pulse 2s infinite;
         }
-
+        
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
-
+        
+        .screen.active {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+        }
+        
         /* 반응형 */
         @media (max-width: 768px) {
             .prototype-container {
@@ -556,291 +514,314 @@
             }
             
             .phone-mockup {
-                width: 90%;
-                max-width: 360px;
+                width: 300px;
             }
         }
-
-        /* 프로토타입 네비게이션 */
-        .prototype-nav {
-            text-align: center;
-            margin-bottom: 20px;
+        
+        /* 스크롤바 스타일 */
+        .screen-content::-webkit-scrollbar {
+            width: 4px;
         }
-
-        .prototype-nav h1 {
-            color: #F8FAFC;
-            margin-bottom: 10px;
-            font-size: 28px;
+        
+        .screen-content::-webkit-scrollbar-track {
+            background: #2C3E50;
         }
-
-        .prototype-nav p {
-            color: #94A3B8;
-            font-size: 16px;
+        
+        .screen-content::-webkit-scrollbar-thumb {
+            background: #4A5F7A;
+            border-radius: 2px;
         }
     </style>
 </head>
 <body>
-    <div class="prototype-nav">
-        <h1>🏃‍♂️ RunTogether</h1>
-        <p>인터랙티브 프로토타입 - 각 화면을 클릭해보세요!</p>
-    </div>
-
     <div class="prototype-container">
         <!-- 로그인 화면 -->
-        <div class="phone-mockup" onclick="toggleScreen(this)">
+        <div class="phone-mockup" onclick="toggleActive(this)">
             <div class="screen">
-                <div class="login-container fade-in">
-                    <div class="logo">🏃‍♂️</div>
-                    <h1 class="app-name">RunTogether</h1>
-                    <p class="app-tagline">러너들의 기록과 커뮤니티</p>
-                    
-                    <div class="input-group">
-                        <input type="email" class="input-field" placeholder="이메일 주소" />
+                <div class="screen-header">
+                    <span>로그인</span>
+                    <span>9:41</span>
+                </div>
+                <div class="screen-content">
+                    <div class="logo">
+                        <h1>🏃‍♂️ RunTogether</h1>
+                        <p>함께 뛰는 즐거움</p>
                     </div>
-                    <div class="input-group">
-                        <input type="password" class="input-field" placeholder="비밀번호" />
-                    </div>
-                    
-                    <button class="primary-btn" onclick="showAlert('로그인 성공!')">로그인</button>
-                    
-                    <div class="social-login">
-                        <button class="social-btn">Google</button>
-                        <button class="social-btn">Apple</button>
-                        <button class="social-btn">카카오</button>
+                    <div class="login-form">
+                        <div class="input-group">
+                            <input type="email" placeholder="이메일 주소" id="email">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" placeholder="비밀번호" id="password">
+                        </div>
+                        <button class="btn btn-primary" onclick="showAlert('로그인 성공!')">로그인</button>
+                        <button class="btn btn-social">Google로 계속하기</button>
+                        <button class="btn btn-social" style="background: #FFE66D; color: #2C3E50;">카카오로 계속하기</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- 메인 대시보드 -->
-        <div class="phone-mockup" onclick="toggleScreen(this)">
+        <div class="phone-mockup" onclick="toggleActive(this)">
             <div class="screen">
                 <div class="screen-header">
-                    <span class="screen-title">대시보드</span>
-                    <button class="notification-btn">🔔</button>
+                    <span>대시보드</span>
+                    <span class="status-indicator"></span>
                 </div>
-                <div class="screen-content fade-in">
-                    <div class="dashboard-header">
-                        <div>
-                            <div class="user-greeting">안녕하세요, 러너님!</div>
-                            <div class="user-subtitle">오늘도 건강한 하루 되세요</div>
+                <div class="screen-content">
+                    <div class="screen-title">안녕하세요, 김민수님! 👋</div>
+                    
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">12.5</div>
+                            <div class="stat-label">이번 주 총 거리 (km)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">이번 주 러닝 횟수</div>
                         </div>
                     </div>
-
-                    <div class="ad-banner pulse" onclick="showAlert('광고 클릭!')">
-                        <h3>🎯 Nike 러닝화 특가!</h3>
-                        <p>지금 구매하면 30% 할인</p>
+                    
+                    <div class="ad-banner">
+                        <strong>🎯 나이키 러닝화 특가!</strong><br>
+                        <small>지금 구매하면 30% 할인 혜택</small>
                     </div>
-
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number">42.1</div>
-                            <div class="stat-label">이번 주 총 거리(km)</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">5</div>
-                            <div class="stat-label">이번 주 런닝 횟수</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">4:32</div>
-                            <div class="stat-label">평균 페이스(/km)</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">1,240</div>
-                            <div class="stat-label">총 칼로리 소모</div>
-                        </div>
-                    </div>
-
+                    
                     <div class="quick-actions">
-                        <button class="action-btn primary" onclick="showAlert('런닝 시작!')">🏃‍♂️ 런닝 시작</button>
-                        <button class="action-btn" onclick="showAlert('기록 보기')">📊 기록 보기</button>
-                    </div>
-                </div>
-                <div class="bottom-nav">
-                    <div class="nav-item active">
-                        <div class="nav-icon">🏠</div>
-                        <div>홈</div>
-                    </div>
-                    <div class="nav-item">
-                        <div class="nav-icon">🏃‍♂️</div>
-                        <div>런닝</div>
-                    </div>
-                    <div class="nav-item">
-                        <div class="nav-icon">👥</div>
-                        <div>커뮤니티</div>
-                    </div>
-                    <div class="nav-item">
-                        <div class="nav-icon">👤</div>
-                        <div>프로필</div>
+                        <div class="action-btn" onclick="showAlert('러닝 시작!')">
+                            🏃‍♂️<br>러닝 시작
+                        </div>
+                        <div class="action-btn" onclick="showAlert('기록 확인')">
+                            📊<br>기록 보기
+                        </div>
+                        <div class="action-btn" onclick="showAlert('커뮤니티 이동')">
+                            👥<br>커뮤니티
+                        </div>
+                        <div class="action-btn" onclick="showAlert('프로필 설정')">
+                            ⚙️<br>설정
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 런닝 트래킹 화면 -->
-        <div class="phone-mockup" onclick="toggleScreen(this)">
+        <!-- 러닝 트래킹 화면 -->
+        <div class="phone-mockup" onclick="toggleActive(this)">
             <div class="screen">
                 <div class="screen-header">
-                    <span class="screen-title">런닝 중</span>
-                    <button class="notification-btn">⏸️</button>
+                    <span>러닝 중</span>
+                    <span style="color: #FF6B6B;">● REC</span>
                 </div>
-                <div class="screen-content fade-in">
-                    <div class="running-header">
-                        <div class="running-status">🔴 진행 중</div>
-                        <div class="running-time">23:45</div>
-                    </div>
-
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-value">5.2</div>
-                            <div class="metric-unit">km</div>
-                            <div class="metric-label">거리</div>
+                <div class="screen-content">
+                    <div class="running-display">
+                        <div class="running-time" id="runningTime">00:15:42</div>
+                        <div style="color: #BDC3C7; margin-bottom: 30px;">진행 시간</div>
+                        
+                        <div class="running-stats">
+                            <div class="running-stat">
+                                <div class="running-stat-value">3.2</div>
+                                <div class="running-stat-label">거리 (km)</div>
+                            </div>
+                            <div class="running-stat">
+                                <div class="running-stat-value">5:12</div>
+                                <div class="running-stat-label">평균 페이스</div>
+                            </div>
+                            <div class="running-stat">
+                                <div class="running-stat-value">320</div>
+                                <div class="running-stat-label">칼로리</div>
+                            </div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-value">4:34</div>
-                            <div class="metric-unit">/km</div>
-                            <div class="metric-label">페이스</div>
+                        
+                        <div style="background: #34495E; height: 150px; border-radius: 10px; margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #BDC3C7;">
+                            🗺️ GPS 경로 지도
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-value">13.1</div>
-                            <div class="metric-unit">km/h</div>
-                            <div class="metric-label">속도</div>
+                        
+                        <div class="control-buttons">
+                            <button class="btn-control btn-pause" onclick="pauseRunning()">⏸️</button>
+                            <button class="btn-control btn-stop" onclick="showAlert('러닝 완료!')">⏹️</button>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-value">312</div>
-                            <div class="metric-unit">kcal</div>
-                            <div class="metric-label">칼로리</div>
-                        </div>
-                    </div>
-
-                    <div class="map-placeholder">
-                        <div class="running-path"></div>
-                        <div style="z-index: 1;">📍 실시간 경로 추적중</div>
-                    </div>
-
-                    <div class="control-buttons">
-                        <button class="control-btn pause-btn" onclick="showAlert('일시정지')">⏸️ 일시정지</button>
-                        <button class="control-btn stop-btn" onclick="showAlert('런닝 종료')">⏹️ 종료</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- 커뮤니티 피드 -->
-        <div class="phone-mockup" onclick="toggleScreen(this)">
+        <div class="phone-mockup" onclick="toggleActive(this)">
             <div class="screen">
                 <div class="screen-header">
-                    <span class="screen-title">커뮤니티</span>
-                    <button class="notification-btn">✏️</button>
+                    <span>커뮤니티</span>
+                    <span>💬</span>
                 </div>
-                <div class="screen-content fade-in">
-                    <div class="feed-post">
+                <div class="screen-content">
+                    <div class="post">
                         <div class="post-header">
-                            <div class="user-avatar">김</div>
-                            <div class="post-user-info">
-                                <div class="post-username">김민수</div>
-                                <div class="post-time">2시간 전</div>
+                            <div class="post-avatar">박</div>
+                            <div class="post-info">
+                                <h4>박지영</h4>
+                                <span>2시간 전</span>
                             </div>
                         </div>
                         <div class="post-content">
-                            오늘 첫 10km 완주 성공! 🎉 목표했던 1시간을 1분 단축했어요. 너무 뿌듯합니다!
+                            오늘 아침 한강에서 10km 완주! 🎉<br>
+                            날씨가 너무 좋아서 기분 최고였어요 ☀️
                         </div>
                         <div class="post-stats">
-                            <div class="post-stat highlight">10.0km</div>
-                            <div class="post-stat">59:32</div>
-                            <div class="post-stat">평균 5:57/km</div>
+                            <span class="post-stat">📏 10.2km</span>
+                            <span class="post-stat">⏱️ 58:24</span>
+                            <span class="post-stat">🔥 520cal</span>
                         </div>
                         <div class="post-actions">
-                            <button class="post-action liked" onclick="toggleLike(this)">❤️ 좋아요 12</button>
-                            <button class="post-action" onclick="showAlert('댓글 작성')">💬 댓글 3</button>
-                            <button class="post-action" onclick="showAlert('공유하기')">📤 공유</button>
+                            <button class="post-action" onclick="likePost(this)">👍 좋아요 (12)</button>
+                            <button class="post-action">💬 댓글 (3)</button>
+                            <button class="post-action">🔗 공유</button>
                         </div>
                     </div>
-
-                    <div class="feed-post">
+                    
+                    <div class="post">
                         <div class="post-header">
-                            <div class="user-avatar">박</div>
-                            <div class="post-user-info">
-                                <div class="post-username">박지영</div>
-                                <div class="post-time">5시간 전</div>
+                            <div class="post-avatar">이</div>
+                            <div class="post-info">
+                                <h4>이성호</h4>
+                                <span>5시간 전</span>
                             </div>
                         </div>
                         <div class="post-content">
-                            새벽 런닝 루트 추천해주세요! 한강공원 말고 다른 곳도 가보고 싶어요 🌅
+                            마라톤 준비하시는 분들께 팁! 💡<br>
+                            장거리 훈련할 때는 심박수 관리가 정말 중요해요. 
                         </div>
                         <div class="post-stats">
-                            <div class="post-stat">질문</div>
+                            <span class="post-stat">📏 21.1km</span>
+                            <span class="post-stat">⏱️ 1:45:32</span>
+                            <span class="post-stat">💓 평균 160bpm</span>
                         </div>
                         <div class="post-actions">
-                            <button class="post-action" onclick="toggleLike(this)">❤️ 좋아요 8</button>
-                            <button class="post-action" onclick="showAlert('댓글 작성')">💬 댓글 15</button>
-                            <button class="post-action" onclick="showAlert('공유하기')">📤 공유</button>
+                            <button class="post-action" onclick="likePost(this)">👍 좋아요 (25)</button>
+                            <button class="post-action">💬 댓글 (8)</button>
+                            <button class="post-action">🔗 공유</button>
                         </div>
                     </div>
-
-                    <div class="ad-banner" onclick="showAlert('광고 클릭!')">
-                        <h4>🏃‍♀️ Garmin 러닝워치</h4>
-                        <p>정확한 기록 측정의 시작</p>
-                    </div>
-
-                    <div class="feed-post">
-                        <div class="post-header">
-                            <div class="user-avatar">이</div>
-                            <div class="post-user-info">
-                                <div class="post-username">이성호</div>
-                                <div class="post-time">1일 전</div>
-                            </div>
-                        </div>
-                        <div class="post-content">
-                            마라톤 대회 준비중인 분들! 효과적인 페이스 훈련 방법 공유합니다 💪
-                        </div>
-                        <div class="post-stats">
-                            <div class="post-stat highlight">42.2km</div>
-                            <div class="post-stat">3:45:20</div>
-                            <div class="post-stat">평균 5:20/km</div>
-                        </div>
-                        <div class="post-actions">
-                            <button class="post-action" onclick="toggleLike(this)">❤️ 좋아요 24</button>
-                            <button class="post-action" onclick="showAlert('댓글 작성')">💬 댓글 8</button>
-                            <button class="post-action" onclick="showAlert('공유하기')">📤 공유</button>
-                        </div>
+                    
+                    <div class="ad-banner" style="margin: 15px 0;">
+                        <strong>🍎 러닝 후 회복음료</strong><br>
+                        <small>단백질과 전해질로 빠른 회복!</small>
                     </div>
                 </div>
-                <div class="bottom-nav">
-                    <div class="nav-item">
-                        <div class="nav-icon">🏠</div>
-                        <div>홈</div>
+                <button class="fab" onclick="showAlert('새 게시글 작성')">✏️</button>
+            </div>
+        </div>
+
+        <!-- 프로필 & 통계 -->
+        <div class="phone-mockup" onclick="toggleActive(this)">
+            <div class="screen">
+                <div class="screen-header">
+                    <span>프로필</span>
+                    <span>⚙️</span>
+                </div>
+                <div class="screen-content">
+                    <div class="profile-header">
+                        <div class="profile-avatar">김</div>
+                        <div class="profile-name">김민수</div>
+                        <div style="color: #BDC3C7; font-size: 14px;">초보 러너 • 6개월차</div>
                     </div>
-                    <div class="nav-item">
-                        <div class="nav-icon">🏃‍♂️</div>
-                        <div>런닝</div>
+                    
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">127.5</div>
+                            <div class="profile-stat-label">총 거리 (km)</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">32</div>
+                            <div class="profile-stat-label">총 러닝 횟수</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">48</div>
+                            <div class="profile-stat-label">팔로워</div>
+                        </div>
                     </div>
-                    <div class="nav-item active">
-                        <div class="nav-icon">👥</div>
-                        <div>커뮤니티</div>
+                    
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">5:24</div>
+                            <div class="stat-label">평균 페이스</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">2,840</div>
+                            <div class="stat-label">총 칼로리</div>
+                        </div>
                     </div>
-                    <div class="nav-item">
-                        <div class="nav-icon">👤</div>
-                        <div>프로필</div>
+                    
+                    <div class="quick-actions" style="grid-template-columns: 1fr;">
+                        <div class="action-btn" onclick="showAlert('상세 통계 보기')">
+                            📈 상세 통계 보기
+                        </div>
+                        <div class="action-btn" onclick="showAlert('러닝 기록')">
+                            📋 러닝 기록
+                        </div>
+                        <div class="action-btn" onclick="showAlert('설정')">
+                            ⚙️ 앱 설정
+                        </div>
+                        <div class="action-btn" onclick="showAlert('로그아웃')">
+                            🚪 로그아웃
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 프로필/통계 화면 -->
-        <div class="phone-mockup" onclick="toggleScreen(this)">
+        <!-- 러닝 완료 화면 -->
+        <div class="phone-mockup" onclick="toggleActive(this)">
             <div class="screen">
                 <div class="screen-header">
-                    <span class="screen-title">내 프로필</span>
-                    <button class="notification-btn">⚙️</button>
+                    <span>러닝 완료</span>
+                    <span>🎉</span>
                 </div>
-                <div class="screen-content fade-in">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #6366F1, #8B5CF6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; margin: 0 auto 15px;">👤</div>
-                        <h2 style="color: #F8FAFC; margin-bottom: 5px;">김민수</h2>
-                        <p style="color: #94A3B8;">초보 러너 • 6개월차</p>
+                <div class="screen-content">
+                    <div class="running-display">
+                        <div style="font-size: 24px; color: #4ECDC4; margin-bottom: 20px;">
+                            🎊 훌륭해요! 🎊
+                        </div>
+                        
+                        <div class="dashboard-stats">
+                            <div class="stat-card">
+                                <div class="stat-value">5.2</div>
+                                <div class="stat-label">거리 (km)</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">28:15</div>
+                                <div class="stat-label">시간</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">5:26</div>
+                                <div class="stat-label">평균 페이스</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">420</div>
+                                <div class="stat-label">칼로리</div>
+                            </div>
+                        </div>
+                        
+                        <div class="ad-banner" style="margin: 20px 0;">
+                            <strong>🏆 개인 기록 달성!</strong><br>
+                            <small>축하드립니다. 이번 달 목표의 80% 완성!</small>
+                        </div>
+                        
+                        <div class="quick-actions">
+                            <div class="action-btn" onclick="showAlert('커뮤니티에 공유')">
+                                📤<br>공유하기
+                            </div>
+                            <div class="action-btn" onclick="showAlert('러닝 저장')">
+                                💾<br>저장
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="stats-grid" style="grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px;">
-                        <div class="stat-card">
-                            <div class
+    <script>
+        let runningInterval;
+        let seconds = 942; // 15:42
+        
+        function toggleActive(
